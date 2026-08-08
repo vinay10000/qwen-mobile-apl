@@ -1,9 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme -->
-    <style name="Theme.PushoffAndroid" parent="android:Theme.Material.Light.NoActionBar">
-        <item name="android:statusBarColor">@android:color/black</item>
-        <item name="android:navigationBarColor">@android:color/black</item>
-        <item name="android:windowBackground">@android:color/black</item>
+    <!-- Base Application Theme -->
+    <style name="Theme.Pushoff" parent="android:Theme.Material.NoActionBar">
+        <item name="android:statusBarColor">@color/background_dark</item>
+        <item name="android:navigationBarColor">@color/background_dark</item>
+        <item name="android:windowBackground">@color/background_dark</item>
+        <item name="android:colorPrimary">@color/primary</item>
+        <item name="android:colorPrimaryDark">@color/primary_variant</item>
+        <item name="android:colorAccent">@color/secondary</item>
+        
+        <!-- Enable edge-to-edge -->
+        <item name="android:enforceStatusBarContrast">false</item>
+        <item name="android:enforceNavigationBarContrast">false</item>
+    </style>
+
+    <!-- Splash Screen Theme -->
+    <style name="Theme.Pushoff.Splash" parent="Theme.Pushoff">
+        <item name="android:windowBackground">@drawable/splash_background</item>
+    </style>
+
+    <!-- Primary Button -->
+    <style name="Widget.Pushoff.Button.Primary" parent="">
+        <item name="android:background">@drawable/button_primary_bg</item>
+        <item name="android:textAppearance">@style/TextAppearance.Pushoff.LabelLarge</item>
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:minHeight">@dimen/button_height_md</item>
+        <item name="android:paddingStart">@dimen/spacing_xl</item>
+        <item name="android:paddingEnd">@dimen/spacing_xl</item>
+        <item name="android:elevation">@dimen/elevation_sm</item>
+    </style>
+
+    <!-- Secondary Button -->
+    <style name="Widget.Pushoff.Button.Secondary" parent="">
+        <item name="android:background">@drawable/button_secondary_bg</item>
+        <item name="android:textAppearance">@style/TextAppearance.Pushoff.LabelLarge</item>
+        <item name="android:textColor">@color/primary</item>
+        <item name="android:minHeight">@dimen/button_height_md</item>
+        <item name="android:paddingStart">@dimen/spacing_xl</item>
+        <item name="android:paddingEnd">@dimen/spacing_xl</item>
+        <item name="android:backgroundTint">@color/surface_card</item>
+    </style>
+
+    <!-- Danger Button -->
+    <style name="Widget.Pushoff.Button.Danger" parent="">
+        <item name="android:background">@drawable/button_danger_bg</item>
+        <item name="android:textAppearance">@style/TextAppearance.Pushoff.LabelLarge</item>
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:minHeight">@dimen/button_height_md</item>
+    </style>
+
+    <!-- Card Style -->
+    <style name="Widget.Pushoff.Card" parent="">
+        <item name="android:background">@drawable/card_background</item>
+        <item name="android:elevation">@dimen/card_elevation</item>
+        <item name="android:padding">@dimen/card_padding</item>
+    </style>
+
+    <!-- Health Bar -->
+    <style name="Widget.Pushoff.HealthBar" parent="">
+        <item name="android:background">@drawable/health_bar_background</item>
+        <item name="android:maxHeight">@dimen/health_bar_height</item>
+        <item name="android:minHeight">@dimen/health_bar_thickness</item>
+    </style>
+
+    <!-- Bottom Navigation -->
+    <style name="Widget.Pushoff.BottomNavigation" parent="">
+        <item name="android:background">@color/surface_dark</item>
+        <item name="android:elevation">@dimen/elevation_lg</item>
     </style>
 </resources>
