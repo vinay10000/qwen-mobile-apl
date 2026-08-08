@@ -5,6 +5,7 @@ import androidx.camera.core.*
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.camera.view.PreviewView
 import androidx.lifecycle.LifecycleOwner
+import com.google.mediapipe.framework.image.MPImageBuilder
 import com.google.mediapipe.tasks.vision.poselandmarker.PoseLandmarker
 import com.google.mediapipe.tasks.vision.poselandmarker.PoseLandmarkerResult
 import java.util.concurrent.ExecutorService
@@ -44,7 +45,7 @@ class PoseCameraController(
         )
     }
     
-    private fun processPoseResult(result: PoseLandmarkerResult, image: androidx.camera.core.ImageProxy) {
+    private fun processPoseResult(result: PoseLandmarkerResult, image: android.media.Image) {
         onPoseDetected(result)
         image.close()
     }
@@ -108,7 +109,7 @@ class PoseCameraController(
         bitmap.copyPixelsFromBuffer(buffer)
         
         // Convert to MediaPipe Image for pose detection
-        val mpImage = com.google.mediapipe.framework.image.MPImageBuilder(bitmap).build()
+        val mpImage = MPImageBuilder(bitmap).build()
         
         // Send to pose landmarker
         poseLandmarker?.detectAsync(mpImage, System.currentTimeMillis())

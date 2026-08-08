@@ -4,6 +4,7 @@ import androidx.compose.animation.core.*
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -13,11 +14,9 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.graphics.drawscope.StrokeCap
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.pushoff.android.ui.theme.PushoffTheme
 
 /**
  * Animated health bar component for boss/player HP display
@@ -32,73 +31,45 @@ fun HealthBar(
 ) {
     val healthPercent = (currentHealth / maxHealth).coerceIn(0f, 1f)
     
-    // Animate health changes smoothly
     val animatedHealth by animateFloatAsState(
         targetValue = healthPercent,
-        animationSpec = tween(
-            durationMillis = 600,
-            easing = FastOutSlowInEasing
-        ),
+        animationSpec = tween(durationMillis = 600, easing = FastOutSlowInEasing),
         label = "healthAnimation"
     )
     
-    // Determine color based on health percentage
     val barColor = when {
-        animatedHealth > 0.6f -> Color(0xFF00E676) // Green
-        animatedHealth > 0.3f -> Color(0xFFFFAB00) // Orange
-        else -> Color(0xFFFF3D00) // Red
+        animatedHealth > 0.6f -> Color(0xFF00E676)
+        animatedHealth > 0.3f -> Color(0xFFFFAB00)
+        else -> Color(0xFFFF3D00)
     }
     
     Column(modifier = modifier) {
-        // Health bar track
         Box(
             modifier = Modifier
                 .fillMaxWidth()
                 .height(16.dp)
-                .clip(androidx.compose.foundation.shape.RoundedCornerShape(8.dp))
+                .clip(RoundedCornerShape(8.dp))
                 .background(Color(0xFF1E2533))
         ) {
-            // Animated health fill
             Box(
                 modifier = Modifier
                     .fillMaxHeight()
                     .width((animatedHealth * 100).percent)
-                    .clip(androidx.compose.foundation.shape.RoundedCornerShape(8.dp))
+                    .clip(RoundedCornerShape(8.dp))
                     .background(
                         Brush.horizontalGradient(
-                            colors = listOf(
-                                barColor.copy(alpha = 0.8f),
-                                barColor
-                            )
-                        )
-                    )
-            )
-            
-            // Shine effect overlay
-            Box(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .background(
-                        Brush.linearGradient(
-                            colors = listOf(
-                                Color.White.copy(alpha = 0.1f),
-                                Color.Transparent,
-                                Color.White.copy(alpha = 0.05f)
-                            ),
-                            start = Offset.Zero,
-                            end = Offset.Infinite
+                            colors = listOf(barColor.copy(alpha = 0.8f), barColor)
                         )
                     )
             )
         }
         
-        // Optional label
         if (showLabel) {
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = if (isEnemy) Arrangement.End else Arrangement.Start
             ) {
-                Text(
+                androidx.compose.material3.Text(
                     text = "${currentHealth.toInt()} / ${maxHealth.toInt()}",
                     style = androidx.compose.material3.MaterialTheme.typography.labelMedium,
                     color = Color(0xFFB0B8C4),
@@ -128,22 +99,10 @@ fun RepCounterRing(
         label = "repProgress"
     )
     
-    Box(
-        modifier = modifier
-            .size(120.dp),
-        contentAlignment = Alignment.Center
-    ) {
-        // Background ring
-        Canvas(
-            modifier = Modifier.size(120.dp)
-        ) {
+    Box(modifier = modifier.size(120.dp), contentAlignment = Alignment.Center) {
+        Canvas(modifier = Modifier.size(120.dp)) {
             drawArc(
-                brush = Brush.sweepGradient(
-                    colors = listOf(
-                        Color(0xFF1E2533),
-                        Color(0xFF1E2533)
-                    )
-                ),
+                brush = Brush.sweepGradient(colors = listOf(Color(0xFF1E2533), Color(0xFF1E2533))),
                 startAngle = -90f,
                 sweepAngle = 360f,
                 useCenter = false,
@@ -151,39 +110,25 @@ fun RepCounterRing(
             )
         }
         
-        // Progress ring
-        Canvas(
-            modifier = Modifier.size(120.dp)
-        ) {
+        Canvas(modifier = Modifier.size(120.dp)) {
             drawArc(
-                brush = Brush.sweepGradient(
-                    colors = listOf(
-                        Color(0xFF4E54C7),
-                        Color(0xFF00E5FF)
-                    )
-                ),
+                brush = Brush.sweepGradient(colors = listOf(Color(0xFF4E54C7), Color(0xFF00E5FF))),
                 startAngle = -90f,
                 sweepAngle = 360f * progress,
                 useCenter = false,
-                style = Stroke(
-                    width = 8.dp.toPx(),
-                    cap = StrokeCap.Round
-                )
+                style = Stroke(width = 8.dp.toPx(), cap = StrokeCap.Round)
             )
         }
         
-        // Rep count in center
         if (showNumber) {
-            Column(
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                Text(
+            Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                androidx.compose.material3.Text(
                     text = "$reps",
                     style = androidx.compose.material3.MaterialTheme.typography.displayLarge,
                     color = Color.White,
                     fontWeight = FontWeight.Black
                 )
-                Text(
+                androidx.compose.material3.Text(
                     text = "REPS",
                     style = androidx.compose.material3.MaterialTheme.typography.labelMedium,
                     color = Color(0xFFB0B8C4),
@@ -208,37 +153,19 @@ fun DamagePopup(
     var scale by remember { mutableStateOf(1f) }
     
     LaunchedEffect(Unit) {
-        // Float up animation
-        animate(
-            initialValue = 0f,
-            targetValue = -100f,
-            animationSpec = tween(800, easing = FastOutSlowInEasing)
-        ) { value, _ ->
+        animate(initialValue = 0f, targetValue = -100f, animationSpec = tween(800, easing = FastOutSlowInEasing)) { value, _ ->
             offsetY = value
         }
-        
-        // Fade out
-        animate(
-            initialValue = 1f,
-            targetValue = 0f,
-            animationSpec = tween(400, delayMillis = 400)
-        ) { value, _ ->
+        animate(initialValue = 1f, targetValue = 0f, animationSpec = tween(400, delayMillis = 400)) { value, _ ->
             alpha = value
         }
-        
-        // Scale up slightly
-        animate(
-            initialValue = 1f,
-            targetValue = 1.5f,
-            animationSpec = tween(400, easing = FastOutSlowInEasing)
-        ) { value, _ ->
+        animate(initialValue = 1f, targetValue = 1.5f, animationSpec = tween(400, easing = FastOutSlowInEasing)) { value, _ ->
             scale = value
         }
-        
         onAnimationEnd()
     }
     
-    Text(
+    androidx.compose.material3.Text(
         text = if (isCritical) "CRITICAL! -$damage" else "-$damage",
         style = androidx.compose.material3.MaterialTheme.typography.headlineLarge,
         color = if (isCritical) Color(0xFFFF1744) else Color(0xFFFF5252),
@@ -250,9 +177,6 @@ fun DamagePopup(
                 scaleX = scale
                 scaleY = scale
             }
-            .shadow(
-                elevation = 8.dp,
-                spotColor = Color.Black.copy(alpha = 0.5f)
-            )
+            .shadow(elevation = 8.dp, spotColor = Color.Black.copy(alpha = 0.5f))
     )
 }
