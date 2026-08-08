@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Background -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@color/surface_elevated" />
+            <corners android:radius="@dimen/health_bar_corner" />
+        </shape>
+    </item>
+    <!-- Progress (will be set programmatically) -->
+    <item android:id="@+id/health_progress">
+        <clip android:clipOrientation="horizontal">
+            <shape android:shape="rectangle">
+                <gradient
+                    android:startColor="@color/health_high"
+                    android:centerColor="@color/health_medium"
+                    android:endColor="@color/health_low"
+                    android:angle="0" />
+                <corners android:radius="@dimen/health_bar_corner" />
+            </shape>
+        </clip>
+    </item>
+</layer-list>

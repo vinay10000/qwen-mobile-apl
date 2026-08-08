@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Primary Brand Colors - Dark Gaming Theme -->
+    <color name="primary">#FF4E54C7</color>
+    <color name="primary_variant">#FF3F3FA3</color>
+    <color name="secondary">#FF00E5FF</color>
+    <color name="secondary_variant">#FF00B8CC</color>
+    
+    <!-- Background Colors -->
+    <color name="background_dark">#FF0A0E17</color>
+    <color name="surface_dark">#FF151A25</color>
+    <color name="surface_elevated">#FF1E2533</color>
+    <color name="surface_card">#FF252D3D</color>
+    
+    <!-- Text Colors -->
+    <color name="text_primary">#FFFFFFFF</color>
+    <color name="text_secondary">#FFB0B8C4</color>
+    <color name="text_disabled">#FF6B7280</color>
+    
+    <!-- Status Colors -->
+    <color name="success">#FF00C853</color>
+    <color name="warning">#FFFFAB00</color>
+    <color name="error">#FFFF3D00</color>
+    <color name="info">#FF2979FF</color>
+    
+    <!-- Damage/Combat Colors -->
+    <color name="damage_critical">#FFFF1744</color>
+    <color name="damage_normal">#FFFF5252</color>
+    <color name="damage_low">#FFFF8A80</color>
+    <color name="health_high">#FF00E676</color>
+    <color name="health_medium">#FFFFAB00</color>
+    <color name="health_low">#FFFF3D00</color>
+    
+    <!-- Rank Colors -->
+    <color name="rank_bronze">#FFCD7F32</color>
+    <color name="rank_silver">#FFC0C0C0</color>
+    <color name="rank_gold">#FFFFD700</color>
+    <color name="rank_platinum">#FFE5E4E2</color>
+    <color name="rank_diamond">#FFB9F2FF</color>
+    <color name="rank_master">#FF9D4EDD</color>
+    <color name="rank_grandmaster">#FFFF006E</color>
+    
+    <!-- Gradient Start/End -->
+    <color name="gradient_start">#FF4E54C7</color>
+    <color name="gradient_end">#FF00E5FF</color>
+    
+    <!-- Camera Overlay -->
+    <color name="camera_overlay">#40000000</color>
+    <color name="pose_landmark">#FF00E5FF</color>
+    <color name="pose_line">#8000E5FF</color>
+    
+    <!-- Transparent -->
+    <color name="transparent">#00000000</color>
+    <color name="scrim">#CC000000</color>
+</resources>
